@@ -22,7 +22,7 @@ export class TodosService {
     if (todo) {
       return todo;
     }
-    throw new NotFoundException(`Le todo d'id: ${id} n'existe pas`);
+    throw new NotFoundException(`Le todo d'id: ${id} n'existe pas`).stack;
   }
 
   createPost(newTodo): Todo[] {

@@ -1,2 +1,14 @@
 
-GET  http://localhost:3000/todos
+POST  http://localhost:3000/relocations/
+Content-Type: application/json
+
+{
+    "nom": "coulibaly",
+    "prenom": "Souleymane",
+    "adresseDepart": "12 résidence les Taratres Rueil M.",
+    "adresseArrivee": "12 résidence les Taratres Paris 75.",
+    "distance": 120,
+    "volume": 50,
+    "mainsDoeuvre" : 6,
+    "distanceDePortage": 390
+}
