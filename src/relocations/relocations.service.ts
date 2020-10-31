@@ -1,14 +1,15 @@
 import { Injectable } from '@nestjs/common';
+import { estimate } from 'src/features/quotation';
 import { addRelocationsDto } from './dtos/addRelocations.dto';
-import { Relocation } from './relocationsInterfaces/relocations.entity.interface';
 import { relocationsList } from './storage/storage';
 
 @Injectable()
 export class RelocationsService {
-  relocationsList: Relocation[] = relocationsList;
+  relocationsList = relocationsList;
 
-  postQuoteInfos(data: Relocation) {
+  postQuoteInfos(data: addRelocationsDto) {
     this.relocationsList = [...this.relocationsList, data];
+    estimate(data);
     return this.relocationsList;
   }
 }

@@ -1,10 +1,27 @@
 export interface Relocation {
-  readonly nom: string;
-  readonly prenom: string;
-  readonly adresseDepart: string;
-  readonly adresseArrivee: string;
-  readonly distance: number;
-  readonly volume: number;
-  readonly mainsDoeuvre: number;
-  readonly distanceDePortage: number;
+  civilite: ['Madame', 'Monsieur', 'Entreprise'];
+  nom: string;
+  prenom: string;
+  telephone: string;
+  Email: string;
+  //------------------
+  date: string;
+  adresseDepart: string;
+  nbreEtageDepart: number;
+  ascenseurDepart: boolean;
+  adresseArrivee: string;
+  nbreEtageArrivee: number;
+  ascenseurArrivee: boolean;
+  volume: number;
+  distanceDePortage: number;
+  //------------------
+  prestationComplementaire: [
+    "FOURNITURES D'EMBALLAGE",
+    'EMBALLAGE / DÉBALLAGE OBJETS FRAGILES',
+    'EMBALLAGE / DÉBALLAGE OBJETS NON FRAGILES',
+    'DÉMONTAGE / REMONTAGE MOBILIER',
+    'ASSURANCE DÉMÉNAGEMENT',
+    'OBJETS PARTICULIERS OU LOURDS',
+    'MONTE MEUBLE',
+  ];
 }

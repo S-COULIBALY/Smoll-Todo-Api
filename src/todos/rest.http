@@ -3,12 +3,19 @@ POST  http://localhost:3000/relocations/
 Content-Type: application/json
 
 {
-    "nom": "coulibaly",
-    "prenom": "Souleymane",
-    "adresseDepart": "12 résidence les Taratres Rueil M.",
-    "adresseArrivee": "12 résidence les Taratres Paris 75.",
-    "distance": 120,
-    "volume": 50,
-    "mainsDoeuvre" : 6,
-    "distanceDePortage": 390
+  "civilite": "Monsieur",
+  "nom": "Coulibaly", 
+  "prenom": "Souleymane",
+  "telephone": "0669444719",
+  "Email": "s.coulibaly@outlook.com",
+  "date": "20202-10-22",
+  "adresseDepart": "12 résidence les taratres Rueil M.",
+  "nbreEtageDepart": 5,
+  "ascenseurDepart": true,
+  "adresseArrivee": "9 rue Auber Paris",
+  "nbreEtageArrivee": 2,
+  "ascenseurArrivee": false,
+  "volume": 55,
+  "distanceDePortage": 300,
+  "prestationComplementaire": "FOURNITURES D'EMBALLAGE"
 }

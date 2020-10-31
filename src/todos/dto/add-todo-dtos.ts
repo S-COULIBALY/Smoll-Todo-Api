@@ -38,6 +38,7 @@ export class addTodoDto {
   @IsString()
   @IsEnum(State)
   readonly status: State;
+
   @IsBoolean()
   @IsNotEmpty()
   readonly required: boolean;

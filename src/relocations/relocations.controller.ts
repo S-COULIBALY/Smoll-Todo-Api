@@ -9,7 +9,7 @@ export class RelocationsController {
 
   @Post()
   postQuoteInfos(@Body() data: addRelocationsDto): addRelocationsDto[] {
-    //postQuoteInfos(@Req() request: Request) {
+    //postQuoteInfos(@Req() request: Request)
     return this.relocationsService.postQuoteInfos(data);
   }
 }
