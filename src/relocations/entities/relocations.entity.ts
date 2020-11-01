@@ -6,12 +6,15 @@ export interface Relocation {
   Email: string;
   //------------------
   date: string;
+
   adresseDepart: string;
   nbreEtageDepart: number;
   ascenseurDepart: boolean;
+
   adresseArrivee: string;
   nbreEtageArrivee: number;
   ascenseurArrivee: boolean;
+
   volume: number;
   distanceDePortage: number;
   //------------------

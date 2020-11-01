@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { estimate } from 'src/features/quotation';
+import Relocation from 'src/features/quotation';
 import { addRelocationsDto } from './dtos/addRelocations.dto';
 import { relocationsList } from './storage/storage';
 
@@ -9,7 +9,8 @@ export class RelocationsService {
 
   postQuoteInfos(data: addRelocationsDto) {
     this.relocationsList = [...this.relocationsList, data];
-    estimate(data);
+    const donnee = new Relocation(data);
+    donnee.calculDistance();
     return this.relocationsList;
   }
 }

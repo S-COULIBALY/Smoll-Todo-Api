@@ -21,6 +21,7 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
+    "@googlemaps/google-maps-services-js": "^3.1.13",
     "@nest-middlewares/cors": "^6.0.1",
     "@nest-middlewares/helmet": "^6.0.0",
     "@nest-middlewares/morgan": "^6.0.0",
@@ -29,6 +30,8 @@
     "@nestjs/platform-express": "^7.0.0",
     "class-transformer": "^0.3.1",
     "class-validator": "^0.12.2",
+    "google-distance": "^1.0.1",
+    "google-distance-matrix": "^1.1.1",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^6.5.4"
