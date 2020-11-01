@@ -1,4 +1,4 @@
-import { Client, LatLngString } from '@googlemaps/google-maps-services-js';
+import { Client, LatLng, LatLngString } from '@googlemaps/google-maps-services-js';
 // Ici on implémente les fonctionnalitées de traitement des données
 // je commence l'implementation demain (classe ou fonction ?????????)
 
@@ -21,16 +21,21 @@ class Relocation {
     let depart = this.data['adresseDepart'];
     let arrivee = this.data['adresseArrivee'];
 
-    let origin: LatLngString[] = ['place_id:ChIJd2aIwalx5kcRnVseQUHAYvM'];
-    let destination: LatLngString[] = ['place_id:ChIJd2aIwalx5kcRnVseQUHAYvM'];
-
     const client = new Client({});
 
     client.distancematrix({
       params: {
-        origins: [41.40338, 2.17403],
-        destinations: destination,
+        key: 'SET API KEY',
+        //origins: ['Paris'],
+        //destinations: ['Lyon']
+        origins: ['place_id:ChIJd2aIwalx5kcRnVseQUHAYvM'],
+        destinations: ['place_id:ChIJd2aIwalx5kcRnVseQUHAYvM'],
       },
+    }).then((r) => {
+      console.log(r.data.rows[0].elements)
+    })
+    .catch((e) => {
+      console.log(e.response.data.error_message);
     });
 
     return console.log(client);
