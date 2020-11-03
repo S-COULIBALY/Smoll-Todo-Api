@@ -20,25 +20,6 @@ class Relocation {
   public async calculDistance() {
     let depart = this.data['adresseDepart'];
     let arrivee = this.data['adresseArrivee'];
-<<<<<<< HEAD
-
-    const client = new Client({});
-
-    client.distancematrix({
-      params: {
-        key: 'SET API KEY',
-        //origins: ['Paris'],
-        //destinations: ['Lyon']
-        origins: ['place_id:ChIJd2aIwalx5kcRnVseQUHAYvM'],
-        destinations: ['place_id:ChIJd2aIwalx5kcRnVseQUHAYvM'],
-      },
-    }).then((r) => {
-      console.log(r.data.rows[0].elements)
-    })
-    .catch((e) => {
-      console.log(e.response.data.error_message);
-    });
-=======
     const client = new Client({});
 
     /*
@@ -58,7 +39,6 @@ class Relocation {
       }
     };
 */
->>>>>>> 46f8a4c... resolution des promesses
 
     client
       .distancematrix({
