@@ -8,7 +8,7 @@ export class RelocationsController {
   constructor(private relocationsService: RelocationsService) {}
 
   @Post()
-  postQuoteInfos(@Body() data: addRelocationsDto): addRelocationsDto[] {
+  postQuoteInfos(@Body() data: addRelocationsDto) {
     //postQuoteInfos(@Req() request: Request)
     return this.relocationsService.postQuoteInfos(data);
   }

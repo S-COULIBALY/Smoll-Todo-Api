@@ -17,9 +17,10 @@ class Relocation {
   constructor(data) {
     this.data = data;
   }
-  calculDistance = () => {
+  public async calculDistance() {
     let depart = this.data['adresseDepart'];
     let arrivee = this.data['adresseArrivee'];
+<<<<<<< HEAD
 
     const client = new Client({});
 
@@ -37,9 +38,45 @@ class Relocation {
     .catch((e) => {
       console.log(e.response.data.error_message);
     });
+=======
+    const client = new Client({});
 
-    return console.log(client);
-  };
+    /*
+    async () => {
+      try {
+        const resultat_1 = client.distancematrix({
+          params: {
+            origins: [depart],
+            destinations: [arrivee],
+            key: 'AIzaSyDZCkywa7zTJxqPj3dhtvIIMnpNALVCmmo',
+          },
+        });
+        const resultat_2 = await resultat_1 => resultat_1.data.rows[0].elements;
+        console.log(resultat_2);
+      } catch (error) {
+        console.log(error.response.data.error_message);
+      }
+    };
+*/
+>>>>>>> 46f8a4c... resolution des promesses
+
+    client
+      .distancematrix({
+        params: {
+          origins: [depart],
+          destinations: [arrivee],
+          key: 'AIzaSyDZCkywa7zTJxqPj3dhtvIIMnpNALVCmmo',
+        },
+      })
+
+      .then(r => {
+        return r.data.rows[0].elements;
+      })
+      .catch(e => {
+        console.log(e.response.data.error_message);
+      });
+  }
 }
 
 export default Relocation;
+// key: 'AIzaSyDZCkywa7zTJxqPj3dhtvIIMnpNALVCmmo', => {resultat_1.data.rows[0].elements };

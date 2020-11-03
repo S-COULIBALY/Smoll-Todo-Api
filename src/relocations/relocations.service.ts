@@ -6,11 +6,12 @@ import { relocationsList } from './storage/storage';
 @Injectable()
 export class RelocationsService {
   relocationsList = relocationsList;
-
+  //relocation: Relocation;
+  //distance_infos: any;
   postQuoteInfos(data: addRelocationsDto) {
     this.relocationsList = [...this.relocationsList, data];
-    const donnee = new Relocation(data);
-    donnee.calculDistance();
-    return this.relocationsList;
+    let relocation = new Relocation(data);
+    let distance_infos = relocation.calculDistance();
+    console.log(distance_infos);
   }
 }
