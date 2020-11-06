@@ -19,3 +19,6 @@ Content-Type: application/json
   "distanceDePortage": 300,
   "prestationComplementaire": "FOURNITURES D'EMBALLAGE"
 }
+
+
+// curl -X POST -H "Content-Type: application/json"  http://localhost:3000/relocations/     

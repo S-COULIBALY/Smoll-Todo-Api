@@ -1,7 +1,6 @@
 import { Body, Controller, Get, Param, Post, Req } from '@nestjs/common';
-import { Request } from 'express';
 import { addRelocationsDto } from './dtos/addRelocations.dto';
-import { RelocationsService } from './relocations.service';
+import { RelocationsService } from './services/relocations.service';
 
 @Controller('relocations')
 export class RelocationsController {
