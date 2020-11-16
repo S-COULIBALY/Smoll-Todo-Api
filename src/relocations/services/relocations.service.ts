@@ -11,7 +11,7 @@ export class RelocationsService {
   postQuoteInfos(relocationData: addRelocationsDto) {
     this.relocationsList = [...this.relocationsList, relocationData];
     let relocation = new DevisService(relocationData);
-    let distance_infos = relocation.distance();
+    let distance_infos = relocation.coutTransport();
     return distance_infos;
   }
 }

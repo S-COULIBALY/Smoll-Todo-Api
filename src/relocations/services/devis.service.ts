@@ -1,45 +1,61 @@
+const fetch = require('node-fetch');
+import axios from 'axios';
 import { Client } from '@googlemaps/google-maps-services-js';
-import { delay } from 'rxjs/operators';
-// Ici on implémente les fonctionnalitées de traitement des données
-// je commence l'implementation demain (classe ou fonction ?????????)
-
-/*  CALCUL DU COÛT - PARTIE 1
-- traitement des jours feriés
-- calcul de la distance entre l'addresse de DÉPART et d'ARRIVÉE
-- calcul du coût du trajet
-- traitement de la pénibilité (avec => 0€ 
-  ou sans ascenceur => Prise en compte du nommbre d'étage à monter)
-- traitement du volume
-- traitement de la distance de portage
-*/
 
 class DevisService {
   public data;
   constructor(data) {
     this.data = data;
   }
+  // Calcul de la distance avec l'API Google Matrix
+  distanceGoogle = async () => {
+    let depart = this.data['adresseDepart'];
+    let arrivee = this.data['adresseArrivee'];
 
-  distance = async () => {
-    // let depart = this.data['adresseDepart'];
-    // let arrivee = this.data['adresseArrivee'];
+    const client = new Client({});
+    try {
+      const resultat = await client.distancematrix({
+        params: {
+          origins: [depart],
+          destinations: [arrivee],
+          key: '...........,',
+        },
+      });
 
-    // const client = new Client({});
-    // try {
-    //   const resultat = await client.distancematrix({
-    //     params: {
-    //       origins: [depart],
-    //       destinations: [arrivee],
-    //       key: 'AIzaSyD9EuifC-NvFWYmIQc-XFOND0riMGqqFjU',
-    //     },
-    //   });
-
-    //   const distance_infos = resultat.data;
-    //   return distance_infos;
-    // } catch (error) {}
+      const distance_infos = resultat.data;
+      return distance_infos;
+    } catch (error) {}
     return 50;
   };
 
-  coutTransport = () => {};
+  datas = function(donnee) {
+    return donnee.json();
+  };
+
+  // Calcul des éléments constitutifs du parcours (la distance, temps du trajet, péage et la consommation(carburant)
+  // avec l'API ViaMichelin
+  coutTransport = async () => {
+    let url1 =
+      'https://secure-apir.viamichelin.com/apir/1/route.json2/fra?steps=1:e:2.0:48.0;1:e:3.0:49.0&authkey=........';
+    //let peage = await axios.get('https://secure-apir.viamichelin.com/apir/1/route.json2/fra?steps=1:e:2.0:48.0;1:e:3.0:49.0&authkey=............');
+
+    let peages = await fetch(url1);
+    let data = await peages.json();
+
+    const distance = data.iti.header.summaries[0].totalDist;
+    const temps_conduite = data.iti.header.summaries[0].drivingTime;
+    const consomation = data.iti.header.summaries[0].consumption;
+    const peage = data.iti.header.summaries[0].tollCost.car;
+    const parcours = {
+      distance: distance,
+      temps_conduite: temps_conduite,
+      consomation: consomation,
+      peage: peage,
+    };
+    return parcours;
+  };
+
+  demenageurConducteur = () => {};
   coutDemenageurs = () => {};
   coutPenilite = () => {};
   supplementJourNonOuvre = () => {};
@@ -48,28 +64,3 @@ class DevisService {
   coutOptions = () => {};
 }
 export default DevisService;
-
-/*
-key:2 'AIzaSyD9EuifC-NvFWYmIQc-XFOND0riMGqqFjUs',
-
-  distance = () => {
-    let depart = this.data['adresseDepart'];
-    let arrivee = this.data['adresseArrivee'];
-
-    const client = new Client({});
-    try {
-      let resultat;
-      return (resultat = client
-        .distancematrix({
-          params: {
-            origins: [depart],
-            destinations: [arrivee],
-            key: 'clé',
-          },
-        })
-        .then(r => r.data));
-      //const distance_infos = resultat.then(r => r.data);
-      //return distance_infos;
-    } catch (error) {}
-  };
-*/
